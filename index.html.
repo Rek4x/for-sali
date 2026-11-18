@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sali ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  color: white;
+  background: radial-gradient(circle at top, #40101c, #090509 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 470px;
+  padding: 30px 22px;
+  background: rgba(20, 8, 14, .88);
+  border: 1px solid #8f243d;
+  border-radius: 22px;
+  box-shadow: 0 0 35px #8f243d55;
+  position: relative;
+  z-index: 2;
+}
+
+h1 { color: #ff8099; }
+
+p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #a83b56;
+  background: #1a1016;
+  color: white;
+  font-size: 17px;
+  text-align: center;
+  margin: 12px 0;
+}
+
+button {
+  padding: 13px 25px;
+  border: none;
+  border-radius: 12px;
+  background: #bd294d;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+button:hover { background: #e04468; }
+
+.hidden { display: none; }
+
+.envelope {
+  font-size: 85px;
+  cursor: pointer;
+  margin: 20px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.1); }
+}
+
+#message {
+  white-space: normal;
+}
+
+.final {
+  color: #ff8ba4;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.float {
+  position: fixed;
+  bottom: -50px;
+  animation: rise linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-115vh) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+.stickers {
+  font-size: 27px;
+  margin: 15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="gate">
+  <h1>Только для тебя ❤️</h1>
+  <p>Чтобы открыть секрет, ответь на вопрос:</p>
+  <p>🎬 Наш самый любимый фильм?</p>
+
+  <input id="password" placeholder="Введи название фильма">
+  <button onclick="checkPassword()">Открыть ❤️</button>
+  <p id="error" style="color:#ff718b"></p>
+</div>
+
+<div class="card hidden" id="letter">
+  <h1>Для Сали ❤️</h1>
+  <p>Вам пришло письмо...</p>
+  <div class="envelope" onclick="openLetter()">💌</div>
+  <p>Нажми на конверт</p>
+</div>
+
+<div class="card hidden" id="greeting">
+  <h1>С днём рождения, Сали! ❤️</h1>
+  <div class="stickers">🎂 🎈 🧸 💗 🌹</div>
+
+  <div id="message">
+    <p>С днём рождения, моё маленькое чудо! 🥹❤️</p>
+
+    <p>Желаю тебе счастья, здоровья, отличного настроения и богатства! Пусть ты всегда остаёшься моей любимой и продолжаешь улыбаться.</p>
+
+    <p>Пусть твоя душа всегда так же ярко сияет, как и сейчас. Молодец, моя милая, хорошая жаным! ❤️</p>
+
+    <p>Я очень ценю тебя и никогда тебя не забуду, моя хорошая. 🥹❤️</p>
+
+    <p>С днём рождения!</p>
+
+    <p>Твой Мухаммадёсин ❤️</p>
+
+    <div class="stickers">💐 🥹 ❤️ 🎀</div>
+
+    <p class="final">
+      Сени жакшы көрөм, кымбатым, туулган күнүң менен. ❤️
+    </p>
+  </div>
+</div>
+
+<script>
+function checkPassword() {
+  const answer = document.getElementById("password")
+    .value.toLowerCase()
+    .replace(/[\s-]/g, "");
+
+  if (answer === "harrypotter" || answer === "гаррипоттер") {
+    document.getElementById("gate").classList.add("hidden");
+    document.getElementById("letter").classList.remove("hidden");
+  } else {
+    document.getElementById("error").textContent =
+      "Попробуй ещё раз ❤️";
+  }
+}
+
+function openLetter() {
+  document.getElementById("letter").classList.add("hidden");
+  document.getElementById("greeting").classList.remove("hidden");
+}
+
+function createFloat() {
+  const item = document.createElement("div");
+  item.className = "float";
+  item.textContent = ["❤️", "💕", "🎈", "💗", "🎈"][
+    Math.floor(Math.random() * 5)
+  ];
+  item.style.left = Math.random() * 100 + "vw";
+  item.style.fontSize = (20 + Math.random() * 25) + "px";
+  item.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(item);
+
+  setTimeout(() => item.remove(), 10000);
+}
+
+setInterval(createFloat, 500);
+</script>
+
+</body>
+</html>
